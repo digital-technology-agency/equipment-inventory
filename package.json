@@ -12,6 +12,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:prod": "npm run build -- --prod --aot",
+    "build:demo": "ng build -c demo --base-href 'https://digital-technology-agency.github.io/equipment-inventory/'",
     "test": "ng test",
     "test:coverage": "rimraf coverage && npm run test -- --code-coverage",
     "lint": "ng lint",

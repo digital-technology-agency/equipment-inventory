@@ -1,0 +1,33 @@
+@import 'src/app/@theme/styles/themes';
+
+@include nb-install-component() {
+  ::ng-deep {
+    $textColor: nb-theme(text-basic-color);
+    $backgroundColor: nb-theme(background-basic-color-1);
+
+    .dx-datagrid {
+      background-color: $backgroundColor;
+      color: $textColor;
+    }
+
+    .dx-datagrid-headers {
+      background-color: $backgroundColor;
+      color: $textColor;
+    }
+
+    .dx-icon {
+      background-color: $backgroundColor;
+      color: $textColor;
+    }
+
+    .dx-datagrid-toolbar-button {
+      background-color: $backgroundColor;
+      color: $textColor;
+    }
+
+    .dx-toolbar {
+      background-color: $backgroundColor;
+      color: $textColor;
+    }
+  }
+}

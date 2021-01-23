@@ -26,13 +26,25 @@ export class UserService extends ServiceBase {
 
     public validate(): Observable<string> {
         return new Observable(subscriber => {
+            const date = new Date();
+            const fifteenMinutesInMs = (60 * 1000) * 12;
+            const createdDate = new Date(+ fifteenMinutesInMs);
+            if (!environment.production) {
+                const testToken = 'test-token-developer';
+                const value = {
+                    createdAt: createdDate,
+                    name: 'nb:auth:simple:token',
+                    ownerStrategyName: 'email',
+                    value: testToken,
+                };
+                localStorage.setItem('auth_app_token', JSON.stringify(value));
+                return subscriber.next(testToken);
+            }
             const token = JSON.parse(sessionStorage.getItem('auth_app_token') || localStorage.getItem('auth_app_token'));
             if (!token) {
                 return subscriber.next(null);
             }
-            const date = new Date();
-            const fifteenMinutesInMs = (60 * 1000) * 12;
-            const createdDate = new Date(token.createdAt + fifteenMinutesInMs);
+
             if (date.getTime() > createdDate.getTime()) {
                 log.debug('refresh token');
                 const getUrl = `${environment.authEndpoint}/${environment.authEndpoint_refresh_token}`;

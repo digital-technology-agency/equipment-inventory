@@ -1,0 +1,58 @@
+.settings-row {
+  position: fixed;
+  opacity: 0.4;
+  left: 95%;
+  top: 90%;
+  border-radius: .25rem;
+  transition: transform .3s ease;
+  z-index: 1000;
+
+  &:hover {
+    opacity: 1;
+    cursor: auto;
+    animation: 3s infinite alternate roundAction;
+    border-radius: 50px;
+    box-shadow: 2px 2px 2px #3366ff;
+  }
+}
+
+.settings-icon {
+  color: #3366ff;
+  font-size: 50px;
+}
+
+@keyframes roundAction {
+  0% {
+    transform: rotate(0deg);
+  }
+  5% {
+    transform: rotate(10deg);
+  }
+  10% {
+    transform: rotate(20deg);
+  }
+  20% {
+    transform: rotate(40deg);
+  }
+  30% {
+    transform: rotate(60deg);
+  }
+  40% {
+    transform: rotate(80deg);
+  }
+  50% {
+    transform: rotate(100deg);
+  }
+  60% {
+    transform: rotate(120deg);
+  }
+  70% {
+    transform: rotate(140deg);
+  }
+  80% {
+    transform: rotate(160deg);
+  }
+  90% {
+    transform: rotate(180deg);
+  }
+}

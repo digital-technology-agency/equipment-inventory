@@ -17,3 +17,9 @@ This is a check of the availability of the organization's property and the state
 ### Facilities
 [![GitHub issues](https://img.shields.io/github/issues/digital-technology-agency/equipment-inventory?color=0A0ECD)](https://github.com/digital-technology-agency/equipment-inventory/issues?q=is%3Aopen+is%3Aissue)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/digital-technology-agency/equipment-inventory?style=flat)](https://github.com/digital-technology-agency/equipment-inventory/issues?q=is%3Aissue+is%3Aclosed)
+
+## UI
+
+### Main window
+
+![Main window](./pic/main-window.svg)

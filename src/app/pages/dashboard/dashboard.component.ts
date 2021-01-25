@@ -1,11 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LocalDataService} from '../../@core/data/local-data.service';
 import {Logger} from '../../@core/utils/logger-service';
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
-
+import {PdfService} from '../../@core/services/pdf.service';
 
 const log = new Logger(`dashboard`);
 
@@ -17,7 +13,8 @@ const log = new Logger(`dashboard`);
 export class DashboardComponent implements OnInit {
     equipments: any[];
 
-    constructor(private dataService: LocalDataService) {
+    constructor(private dataService: LocalDataService,
+                private pdf: PdfService) {
     }
 
     ngOnInit(): void {
@@ -30,9 +27,16 @@ export class DashboardComponent implements OnInit {
     }
 
     exportPDF() {
-        const rows = [];
-        this.equipments.forEach(item => {
-            rows.push(`${item.equipmentCode}`);
+        const watermark = {
+            text: 'Агентство цифровых технологий',
+            color: 'rgba(64,19,255,0.18)',
+            opacity: 0.05,
+            bold: false,
+            italics: false,
+        };
+        const rows = this.equipments.map(i => {
+            /*return [i.equipmentName, i.equipmentType, i.equipmentCode, {qr: `${i.equipmentCode}`, fit: '50'}];*/
+            return [i.equipmentName, i.equipmentType, i.equipmentCode];
         });
         const content = {
             compress: true,
@@ -42,39 +46,36 @@ export class DashboardComponent implements OnInit {
                 subject: 'Список оборудования',
                 keywords: 'equipments',
             },
-            watermark: { text: 'Агентство цифровых технологий', color: 'blue', opacity: 0.1, bold: true, italics: false },
             content: [
-                {text: 'Агентство цифровых технологий', link: 'https://dta.agency', color: '#4013ff'},
+                {text: 'АГЕНТСТВО ЦИФРОВЫХ ТЕХНОЛОГИЙ', link: 'https://dta.agency', color: '#4013ff'},
                 {
                     layout: 'lightHorizontalLines', // optional
                     table: {
                         // headers are automatically repeated if the table spans over multiple pages
                         // you can declare how many rows should be treated as headers
                         headerRows: 1,
-                        widths: ['auto', 'auto', 'auto'],
-                        /*                        body: rows,*/
+                        widths: ['*', 'auto', '*'],
                         body: [
                             ['Название', 'Тип', 'Код'],
+                            ...rows,
                         ],
                     },
                 },
             ],
         };
-        pdfMake.createPdf(content).open();
+        this.pdf.openWaterMark(content, watermark);
     }
 
     exportPDFWithSecret() {
         const content = {
-            userPassword: '123',
-            ownerPassword: '123456',
-            compress: true,
+            /*compress: true,*/
             info: {
                 title: 'Оборудование',
                 author: 'Дмитрий К',
                 subject: 'Список оборудования',
                 keywords: 'equipments',
             },
-            watermark: { text: 'Агентство цифровых технологий', color: 'blue', opacity: 0.1, bold: true, italics: false },
+            watermark: {text: 'Агентство цифровых технологий', color: 'blue', opacity: 0.1, bold: true, italics: false},
             content: [
                 {text: 'Агентство цифровых технологий', link: 'https://dta.agency', color: '#4013ff'},
                 {
@@ -92,6 +93,6 @@ export class DashboardComponent implements OnInit {
                 },
             ],
         };
-        pdfMake.createPdf(content).open();
+        this.pdf.openWithSecret(content, '123');
     }
 }

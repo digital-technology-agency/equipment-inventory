@@ -4,7 +4,7 @@
             <h6>Список оборудования.</h6>
             <div class="row">
                 <button nbButton (click)="exportPDF()">PDF</button>
-                <button style="margin-left: 10px;" nbButton (click)="exportPDFWithSecret()">PDF Secret('123')</button>
+                <!--<button style="margin-left: 10px;" nbButton (click)="exportPDFWithSecret()">PDF Secret('123')</button>-->
                 <dx-data-grid id="gridContainer"
                               [dataSource]="equipments"
                               [showBorders]="true"
@@ -28,10 +28,10 @@
                             [showInfo]="true">
                     </dxo-pager>
                     <dxo-group-panel [visible]="false"></dxo-group-panel>
-                    <dxo-export [enabled]="true"
+<!--                    <dxo-export [enabled]="true"
                                 fileName="equipments.xlsx"
                                 [allowExportSelectedData]="false">
-                    </dxo-export>
+                    </dxo-export>-->
                     <dxi-column dataField="equipmentName" caption="Название" dataType=""></dxi-column>
                     <dxi-column dataField="equipmentType" caption="Тип" dataType=""></dxi-column>
                     <dxi-column dataField="equipmentCode" caption="Код" dataType=""></dxi-column>

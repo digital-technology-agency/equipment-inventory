@@ -4,9 +4,9 @@ This is a check of the availability of the organization's property and the state
   accounting data. This is the main way to actually control the safety of property
    values and funds.
 
-[![License](http://img.shields.io/badge/Licence-MIT-brightgreen.svg)](LICENSE) [![Website dta.agency](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://dta.agency)
+[Агентство цифровых технологий](https://dta.agency)
 
-[Агентство цифровых технологий](https://dta.agency/)
+[![License](http://img.shields.io/badge/Licence-MIT-brightgreen.svg)](LICENSE) [![Website dta.agency](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://dta.agency)
 
 [Разработка программного обеспечения](https://dta.agency/)
 
